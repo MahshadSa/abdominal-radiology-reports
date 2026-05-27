@@ -75,6 +75,3 @@ The codebase favours plain, direct Python over abstraction. Type hints are used 
 
 Active development. Phase 0 is complete; Phase 1 is in progress. Subsequent phases are designed but not yet implemented.
 
-## Authorship
-
-Developed within an academic radiology research group. Clinical direction is provided by the principal investigator; technical implementation is led by a radiologist with computational research training.
