@@ -9,7 +9,10 @@ WORKING_REPORTS: Path = WORKING_COPY / "reports"
 METADATA_DIR: Path = DATA_ROOT / "02_metadata"
 PARSED_DIR: Path = DATA_ROOT / "03_parsed"
 LOGS_DIR: Path = DATA_ROOT / "04_logs"
+DEID_DIR: Path = DATA_ROOT / "05_deidentified"
 QUARANTINE_DIR: Path = DATA_ROOT / "99_quarantine"
+
+STOPLIST_PATH: Path = Path(__file__).resolve().parent.parent / "stoplist.txt"
 
 
 def verify_data_tree() -> None:

@@ -1,0 +1,5 @@
+# Phase 2 name-token stoplist.
+# Tokens here are dropped from per-record name search (common words that collide with surnames).
+# Each entry trades recall for precision: a real surname equal to this word will NOT be scrubbed.
+# The full-roster recall check is the backstop. Keep tight and data-driven.
+poor
