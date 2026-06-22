@@ -26,7 +26,11 @@ def split_sections(doc: Document) -> dict:
             "findings": "", "impression": "", "parse_flags": flags,
         }
 
-    modality = paragraphs[0].text.strip()
+    # Word soft line breaks (<w:br/>) arrive as "\n" inside a single paragraph's
+    # text. Flatten to one line per logical line so a header sitting on line 2+
+    # of a paragraph (including one glued onto the modality line) is matched.
+    lines = [ln for para in paragraphs for ln in para.text.split("\n")]
+    modality = lines[0].strip()
 
     header_positions: dict[str, int] = {}
     current_section: str | None = None
@@ -34,11 +38,11 @@ def split_sections(doc: Document) -> dict:
     past_first_header = False
     found_signoff = False
 
-    for i, para in enumerate(paragraphs):
+    for i, raw in enumerate(lines):
         if i == 0:
             continue
 
-        text = para.text.strip()
+        text = raw.strip()
 
         if text.lower().startswith("sincerely"):
             found_signoff = True

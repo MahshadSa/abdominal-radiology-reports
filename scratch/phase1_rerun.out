@@ -1,0 +1,43 @@
+2026-06-23 01:46:32,501 INFO __main__: Logging to C:\Users\Hooshmand\Documents\PROJECTS\CD_LI_DR_RADMARD\reports_workstation\ibd-reports-data\04_logs\phase1_20260622_221632.log
+2026-06-23 01:46:32,504 INFO __main__: Phase 1 start
+2026-06-23 01:46:32,505 INFO __main__: Loading metadata: C:\Users\Hooshmand\Documents\PROJECTS\CD_LI_DR_RADMARD\reports_workstation\ibd-reports-data\02_metadata\phase0_metadata.csv
+2026-06-23 01:46:32,754 INFO __main__: Metadata rows: 9675
+2026-06-23 01:46:32,798 INFO __main__: Quarantine list loaded: 11 filenames will be skipped
+2026-06-23 01:46:37,180 INFO __main__: Progress: 500 files parsed
+2026-06-23 01:46:41,044 INFO __main__: Progress: 1000 files parsed
+2026-06-23 01:46:44,714 INFO __main__: Progress: 1500 files parsed
+2026-06-23 01:46:48,351 INFO __main__: Progress: 2000 files parsed
+2026-06-23 01:46:51,025 INFO __main__: Progress: 2500 files parsed
+2026-06-23 01:46:54,575 INFO __main__: Progress: 3000 files parsed
+2026-06-23 01:46:58,235 INFO __main__: Progress: 3500 files parsed
+2026-06-23 01:47:00,987 INFO __main__: Progress: 4000 files parsed
+2026-06-23 01:47:04,215 INFO __main__: Progress: 4500 files parsed
+2026-06-23 01:47:07,933 INFO __main__: Progress: 5000 files parsed
+2026-06-23 01:47:11,450 INFO __main__: Progress: 5500 files parsed
+2026-06-23 01:47:14,514 INFO __main__: Progress: 6000 files parsed
+2026-06-23 01:47:18,402 INFO __main__: Progress: 6500 files parsed
+2026-06-23 01:47:22,168 INFO __main__: Progress: 7000 files parsed
+2026-06-23 01:47:25,300 INFO __main__: Progress: 7500 files parsed
+2026-06-23 01:47:29,057 INFO __main__: Progress: 8000 files parsed
+2026-06-23 01:47:32,606 INFO __main__: Progress: 8500 files parsed
+2026-06-23 01:47:35,631 INFO __main__: Progress: 9000 files parsed
+2026-06-23 01:47:39,091 INFO __main__: Progress: 9500 files parsed
+2026-06-23 01:47:40,112 INFO __main__: Skipped 11 quarantined files
+2026-06-23 01:47:40,112 INFO __main__: Parsing complete: 9664 records
+2026-06-23 01:47:40,527 INFO __main__: JSONL written: C:\Users\Hooshmand\Documents\PROJECTS\CD_LI_DR_RADMARD\reports_workstation\ibd-reports-data\03_parsed\phase1_parsed.jsonl (9664 records)
+2026-06-23 01:47:41,459 INFO __main__: CSV written: C:\Users\Hooshmand\Documents\PROJECTS\CD_LI_DR_RADMARD\reports_workstation\ibd-reports-data\03_parsed\phase1_parsed.csv
+2026-06-23 01:47:41,481 INFO __main__: Flags summary written: C:\Users\Hooshmand\Documents\PROJECTS\CD_LI_DR_RADMARD\reports_workstation\ibd-reports-data\03_parsed\phase1_flags_summary.csv (176 flagged records)
+2026-06-23 01:47:41,503 INFO __main__: Phase 1 complete
+Total parsed:   9664
+Zero flags:     9488
+1+ flags:       176
+Empty findings: 17
+Top 10 flags:
+  contains_table: 71
+  no_impression: 52
+  non_ascii_in_modality: 20
+  no_modality: 20
+  no_clinical_information: 19
+  no_signoff: 18
+  modality_long: 1
+EXIT_CODE=0
