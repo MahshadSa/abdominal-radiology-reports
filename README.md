@@ -101,4 +101,4 @@ The codebase favours plain, direct Python over abstraction. Type hints are used 
 
 ## Status
 
-Active development. Phases 0, 1, 1b, and 2 are complete on the full corpus. Phases 3 to 5 are designed and pending implementation. The research programme begins once the de-identified, structured corpus is locked.
+Active development. Phases 0, 1, 1b, and 2 are complete on the full corpus. De-identification and its validation now cover every parsed field, including the modality header. Phase 3 classification is next; Phases 4 and 5 are designed and pending implementation. The research programme begins once the de-identified, structured corpus is locked.
