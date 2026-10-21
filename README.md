@@ -32,14 +32,14 @@ The pipeline produces the structured, de-identified corpus that the research pro
 | 0 | Capture original report metadata and create an immutable, read-only archive of source files | Complete |
 | 1 | Parse documents into structured sections (modality, clinical information, comparison, findings, impression) | Complete |
 | 1b | Cluster filenames to identify repeat-patient reports ahead of longitudinal linkage | Complete |
-| 2 | De-identify filenames and report bodies to HIPAA Safe Harbor | In progress |
+| 2 | De-identify filenames and report bodies to HIPAA Safe Harbor | Complete |
 | 3 | Classify reports along modality and disease-category axes (multi-label, with explicit uncertainty handling) | Designed |
 | 4 | Quality audit driven by parse flags accumulated in earlier phases | Designed |
 | 5 | Construct a longitudinal patient linkage table | Designed |
 
 ### De-identification (Phase 2)
 
-De-identification targets the HIPAA Safe Harbor standard. Names are removed by matching each report only against the patient tokens derived from its own filename, after a normalisation step that strips modality, anatomy, and date fragments. In-text dates are reduced through an ordered set of passes that deliberately leaves numeric clinical measurements untouched. Email and telephone patterns are caught by validated backstop patterns. Every run emits a non-identifying audit trail keyed by row index, recording per-category removal counts and flags for anomalous records, so the scrub can be reviewed without exposing patient data. Per-patient anonymous identifiers are assigned only after repeat-patient identity is confirmed, so that a single patient is never split across two identifiers.
+De-identification targets the HIPAA Safe Harbor standard. Names are removed by matching each report only against the patient tokens derived from its own filename, after a normalisation step that strips modality, anatomy, and date fragments. In-text dates are reduced through an ordered set of passes that deliberately leaves numeric clinical measurements untouched. Email and telephone patterns are caught by validated backstop patterns. Every run emits a non-identifying audit trail keyed by row index, recording per-category removal counts and flags for anomalous records, so the scrub can be reviewed without exposing patient data. Filenames are then replaced by per-report identifiers, assigned by a seeded shuffle so that identifier order carries no alphabetical signal; the mapping table is minted once, never regenerated, and held outside the repository. Per-patient identifiers are deferred until repeat-patient identity is confirmed, so that a single patient is never split across two identifiers.
 
 ### Classification (Phase 3)
 
@@ -58,6 +58,7 @@ src/ibd_reports/
   phase2_d1.py                  name self-search token derivation
   phase2_recon*.py              de-identification reconnaissance passes
   phase2_recall_check.py        post-scrub recall verification
+  phase2_rekey.py               per-report identifier assignment
   stoplist.txt                  common-word exclusions for name matching
   parsing/
     section_splitter.py         text to structured sections
@@ -100,4 +101,4 @@ The codebase favours plain, direct Python over abstraction. Type hints are used 
 
 ## Status
 
-Active development. Phases 0, 1, and 1b are complete on the full corpus; Phase 2 de-identification has been built and run, with final validation in progress. Phases 3 to 5 are designed and pending implementation. The research programme begins once the de-identified, structured corpus is locked.
+Active development. Phases 0, 1, 1b, and 2 are complete on the full corpus. Phases 3 to 5 are designed and pending implementation. The research programme begins once the de-identified, structured corpus is locked.

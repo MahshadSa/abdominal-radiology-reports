@@ -12,6 +12,10 @@ LOGS_DIR: Path = DATA_ROOT / "04_logs"
 DEID_DIR: Path = DATA_ROOT / "05_deidentified"
 QUARANTINE_DIR: Path = DATA_ROOT / "99_quarantine"
 
+REKEY_JSONL: Path = DEID_DIR / "phase2_rekeyed.jsonl"
+REKEY_CSV: Path = DEID_DIR / "phase2_rekeyed.csv"
+REC_MAP_CSV: Path = METADATA_DIR / "rec_id_map.csv"
+
 STOPLIST_PATH: Path = Path(__file__).resolve().parent.parent / "stoplist.txt"
 
 
