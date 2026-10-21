@@ -56,6 +56,17 @@ def rekey_records(records: list[dict], mapping: dict[str, str]) -> list[dict]:
     return sorted(out, key=lambda r: r["rec_id"])
 
 
+def write_rekeyed(records: list[dict], out_jsonl: Path, out_csv: Path) -> None:
+    """Write rec_id-keyed records as JSONL (non-ASCII kept) plus a flat CSV."""
+    with out_jsonl.open("w", encoding="utf-8") as fh:
+        for rec in records:
+            fh.write(json.dumps(rec, ensure_ascii=False) + "\n")
+    logger.info("Wrote rekeyed jsonl (%d records)", len(records))
+
+    pd.DataFrame(records).to_csv(out_csv, index=False, encoding="utf-8")
+    logger.info("Wrote rekeyed csv (%d records)", len(records))
+
+
 def run(deid_jsonl: Path, out_jsonl: Path, out_csv: Path, map_csv: Path) -> None:
     """Mint REC_ IDs once and write the rekeyed corpus plus the filename -> rec_id map."""
     for path in (out_jsonl, out_csv, map_csv):
@@ -68,14 +79,7 @@ def run(deid_jsonl: Path, out_jsonl: Path, out_csv: Path, map_csv: Path) -> None
 
     mapping = assign_rec_ids([rec["filename"] for rec in records])
     rekeyed = rekey_records(records, mapping)
-
-    with out_jsonl.open("w", encoding="utf-8") as fh:
-        for rec in rekeyed:
-            fh.write(json.dumps(rec, ensure_ascii=False) + "\n")
-    logger.info("Wrote rekeyed jsonl (%d records)", len(rekeyed))
-
-    pd.DataFrame(rekeyed).to_csv(out_csv, index=False, encoding="utf-8")
-    logger.info("Wrote rekeyed csv (%d records)", len(rekeyed))
+    write_rekeyed(rekeyed, out_jsonl, out_csv)
 
     map_df = pd.DataFrame(
         sorted(mapping.items(), key=lambda kv: kv[1]), columns=["filename", "rec_id"]
